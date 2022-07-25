@@ -1,0 +1,34 @@
+{
+    "name": "vandarpay/service-repository",
+    "description": "Service Repository Design Pattern In Laravel",
+    "type": "libarary",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "vandarpay\\ServiceRepository\\": "src/"
+        },
+        "files": [
+            "src/Helpers/HelperFunctions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "vandarpay\\ServiceRepository\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hamid Mahmoudpour",
+            "email": "mp.hamid@yahoo.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "vandarpay\\ServiceRepository\\ServiceRepositoryServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}

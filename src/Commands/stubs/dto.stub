@@ -1,0 +1,22 @@
+<?php
+
+namespace {{ namespace }};
+
+use vandarpay\ServiceRepository\BaseDto;
+
+/**
+ * @method $this setFirstField(string $firstField)
+ * @method string getFirstField()
+ * @method string getCustomField()
+ */
+class {{class}}Dto extends BaseDto
+{
+    protected string $firstField;
+    protected string $customField;
+
+    public function setCustomField(string $customField): static
+    {
+        $this->customField = strtolower($customField);
+        return $this;
+    }
+}
