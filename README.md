@@ -14,10 +14,10 @@ This package is designed to implement the service structure on Laravel projects.
 
     php artisan make:dto
     php artisan make:service-exception {service-name}
-    php artisan make:service-exception-language {service-name}
-    php artisan make:service-repository {service-name}
+    php artisan make:service-exception-language {service-name} --language=fa
+    php artisan make:service-repository {service-name} --grpc
     php artisan make:service-transformer {service-name}
-    php artisan make:service {service-name} --language=fa
+    php artisan make:service {service-name} --grpc --language=fa --transformer
 
 ## Service Structure
 

@@ -13,7 +13,7 @@ class ServiceMakeCommand extends GeneratorCommand
 {
     protected $name = 'make:service';
 
-    protected $description = 'Create a new custom Ignition solution class';
+    protected $description = 'Create a new service repository class';
 
     protected $type = 'Service';
 
@@ -26,7 +26,9 @@ class ServiceMakeCommand extends GeneratorCommand
     {
         $this->createException();
         $this->createRepository();
-        $this->createTransformer();
+        if ($this->option('transformer')) {
+            $this->createTransformer();
+        }
         if ($this->option('language')) {
             $this->buildLanguageFile();
         }
@@ -35,7 +37,7 @@ class ServiceMakeCommand extends GeneratorCommand
 
     protected function getPath($name)
     {
-        $name = Str::replaceFirst($this->rootNamespace(), '', $name);
+        $name = Str::replaceFirst($this->rootNamespace(), '', Str::studly($name));
         return $this->laravel['path'] . '/' . str_replace('\\', '/', $name) . 'Service.php';
     }
 
@@ -51,38 +53,35 @@ class ServiceMakeCommand extends GeneratorCommand
 
     private function createException()
     {
-        $exception = Str::studly($this->argument('name'));
 
         $this->call('make:service-exception', [
-            'name' => "{$exception}",
+            'name' => "{$this->argument('name')}",
         ]);
     }
 
     private function createRepository()
     {
-        $repository = Str::studly($this->argument('name'));
+        $grpc = $this->option('grpc');
 
         $this->call('make:service-repository', [
-            'name' => "{$repository}",
+            'name' => "{$this->argument('name')}",
+            '--grpc' => "{$grpc}",
         ]);
     }
 
     private function createTransformer()
     {
-        $transformer = Str::studly($this->argument('name'));
-
         $this->call('make:service-transformer', [
-            'name' => "{$transformer}",
+            'name' => "{$this->argument('name')}",
         ]);
     }
 
     private function buildLanguageFile()
     {
         $language = $this->option('language');
-        $name = Str::studly($this->argument('name'));
 
         $this->call('make:service-exception-language', [
-            'name' => "{$name}",
+            'name' => "{$this->argument('name')}",
             '--language' => "{$language}",
         ]);
 
@@ -97,6 +96,8 @@ class ServiceMakeCommand extends GeneratorCommand
     {
         return [
             ['language', 'l', InputOption::VALUE_OPTIONAL, 'Generate a language file for service exception.'],
+            ['transformer', 't', InputOption::VALUE_NONE, 'Generate service transformer for rpc.'],
+            ['grpc', 'g', InputOption::VALUE_NONE, 'Generate service for grpc server.'],
         ];
     }
 

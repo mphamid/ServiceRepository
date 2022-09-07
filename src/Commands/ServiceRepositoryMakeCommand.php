@@ -6,6 +6,7 @@ namespace vandarpay\ServiceRepository\Commands;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputOption;
 
 #[AsCommand(name: 'make:service-repository')]
 class ServiceRepositoryMakeCommand extends GeneratorCommand
@@ -24,6 +25,9 @@ class ServiceRepositoryMakeCommand extends GeneratorCommand
 
     protected function getStub(): string
     {
+        if($this->option('grpc')){
+            return __DIR__ . '/stubs/service-repository-grpc.stub';
+        }
         return __DIR__ . '/stubs/service-repository.stub';
     }
 
@@ -31,5 +35,15 @@ class ServiceRepositoryMakeCommand extends GeneratorCommand
     {
         return "{$rootNamespace}\\Services\\" . Str::studly($this->argument('name'));
     }
-
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['grpc', 'g', InputOption::VALUE_NONE, 'Generate service for grpc server.']
+        ];
+    }
 }

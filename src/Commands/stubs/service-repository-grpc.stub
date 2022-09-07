@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+use Spiral\RoadRunner\GRPC\ServiceInterface;
+
+interface {{ class }}Repository extends ServiceInterface
+{
+    const NAME = 'protobuf.services.Echo';
+
+}
