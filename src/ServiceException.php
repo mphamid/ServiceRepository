@@ -25,7 +25,7 @@ abstract class ServiceException extends \Exception
         $this->exception = $this->messages[$exception_const] ?? $exception_const;
         $this->exception_code = ($this->exception === $exception_const) ? $serviceValidationCode : $exception_const;
         $language_name = 'exceptions/' . fromCamelCase(class_basename(get_called_class()));
-        if (isset(__($language_name)[$exception_const])) {
+        if (isset(__($language_name)[$exception_const]) && !app()->runningInConsole()) {
             $this->message = __($language_name . '.' . $exception_const, $translateParameter);
         } else {
             $this->message = ($this->exception_code === $serviceValidationCode) ? $exception_const : $this->exception[1];
