@@ -8,14 +8,13 @@ use UnitEnum;
 class BaseDto
 {
     protected int $variablePosition = 0;
-    protected bool $throwExceptionInSetFromArray = false;
     protected array $variableArray = [];
 
     /**
      * @param array|null $dataArray
      * @throws Exception
      */
-    public function __construct(array $dataArray = null, bool $throwException = null)
+    public function __construct(array $dataArray = null, bool $throwException = false)
     {
         if (is_array($dataArray) && !empty($dataArray)) {
             $this->fromArray($dataArray, $throwException);
@@ -116,17 +115,14 @@ class BaseDto
      * @return $this
      * @throws Exception
      */
-    public function fromArray(array $data, bool $throwException = null): static
+    public function fromArray(array $data, bool $throwException = false): static
     {
-        if (!is_null($throwException)) {
-            $this->throwExceptionInSetFromArray = $throwException;
-        }
         foreach ($data as $variableName => $value) {
             try {
                 $methodName = 'set' . ucfirst($variableName);
                 $this->$methodName($value);
             } catch (Exception $exception) {
-                if ($this->throwExceptionInSetFromArray) {
+                if ($throwException) {
                     throw $exception;
                 }
             }
