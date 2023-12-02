@@ -4,7 +4,7 @@ This package is designed to implement the service structure on Laravel projects.
 
 ## Installation
 
-    composer require vandarpay/service-repository
+    composer require mphamid/service-repository
 
 ## Requirement
 

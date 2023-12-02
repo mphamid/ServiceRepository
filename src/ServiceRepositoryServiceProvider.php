@@ -1,14 +1,14 @@
 <?php
 
-namespace vandarpay\ServiceRepository;
+namespace mphamid\ServiceRepository;
 
 use Illuminate\Support\ServiceProvider;
-use vandarpay\ServiceRepository\Commands\DtoMakeCommand;
-use vandarpay\ServiceRepository\Commands\ServiceExceptionLanguageMakeCommand;
-use vandarpay\ServiceRepository\Commands\ServiceExceptionMakeCommand;
-use vandarpay\ServiceRepository\Commands\ServiceMakeCommand;
-use vandarpay\ServiceRepository\Commands\ServiceRepositoryMakeCommand;
-use vandarpay\ServiceRepository\Commands\ServiceTransformerMakeCommand;
+use mphamid\ServiceRepository\Commands\DtoMakeCommand;
+use mphamid\ServiceRepository\Commands\ServiceExceptionLanguageMakeCommand;
+use mphamid\ServiceRepository\Commands\ServiceExceptionMakeCommand;
+use mphamid\ServiceRepository\Commands\ServiceMakeCommand;
+use mphamid\ServiceRepository\Commands\ServiceRepositoryMakeCommand;
+use mphamid\ServiceRepository\Commands\ServiceTransformerMakeCommand;
 
 class ServiceRepositoryServiceProvider extends ServiceProvider
 {

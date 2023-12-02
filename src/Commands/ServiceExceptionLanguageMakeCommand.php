@@ -1,6 +1,6 @@
 <?php
 
-namespace vandarpay\ServiceRepository\Commands;
+namespace mphamid\ServiceRepository\Commands;
 
 
 use Illuminate\Console\GeneratorCommand;

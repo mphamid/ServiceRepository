@@ -2,7 +2,7 @@
 
 namespace {{ namespace }};
 
-use vandarpay\ServiceRepository\ServiceException;
+use mphamid\ServiceRepository\ServiceException;
 use Symfony\Component\HttpFoundation\Response;
 
 class {{ class }}Exception extends ServiceException

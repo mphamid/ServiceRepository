@@ -1,6 +1,6 @@
 <?php
 
-namespace vandarpay\ServiceRepository;
+namespace mphamid\ServiceRepository;
 
 use function __;
 use function fromCamelCase;
