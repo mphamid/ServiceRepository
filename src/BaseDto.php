@@ -48,6 +48,9 @@ class BaseDto
             if ($value instanceof UnitEnum) {
                 return $value->value;
             }
+            if ($value instanceof BaseDto) {
+                return $value->toArray();
+            }
             return $value;
         }, array_filter(
             get_object_vars($this),
